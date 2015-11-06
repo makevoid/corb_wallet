@@ -1,6 +1,8 @@
 # Corb Wallet
 ### Ruby Web Wallet based on Bitcoin Core
 
+github pages: http://makevoid.github.io/corb_wallet  
+
 #### Simple UI + secure and custom wallet API on top of the standard Bitcoin Core JSON RPC API
 
 #### Bitcoin Core
