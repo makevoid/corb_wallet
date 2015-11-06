@@ -1,0 +1,36 @@
+%h2 Extra
+
+- unless APP_ENV == "development"
+  %p This section contains debugging features available only in development
+- else
+  :ruby
+    w = wallet.dev
+    accounts   = w.listaccounts
+    utxos      = w.listunspent
+    infos      = w.walletinfo
+    conn_count = w.connection_count
+    net_totals = w.net_totals
+
+
+  %h4 Info:
+  %ul= partial 'infos', locals: { infos: infos }
+
+
+  %h4 Connection count: #{conn_count}
+
+  %h4 Network totals:
+  %ul= partial 'infos', locals: { infos: net_totals }
+
+
+  %h4 Accounts:
+  %ul
+    - for label, balance in accounts
+      %li
+        %span #{label == "" ? "main" : label}:
+        #{balance} BTC
+
+  %h4 UTXO (unspent transaction output):
+  %ul
+    = "No UTXO available" if utxos.empty?
+    - utxos.each do |utxo|
+      %li= utxo.inspect

@@ -1,0 +1,34 @@
+:ruby
+  tx_recv = wallet.transactions.select{ |tx| tx.category == "receive" }
+  tx_sent = wallet.transactions.select{ |tx| tx.category == "send" }
+
+%h2 Transactions
+
+%nav.categories
+  %a.btn{ data: { toggle: "received" } } Received
+  %a.btn{ data: { toggle: "sent" } } Sent
+
+
+%table.received
+  %tr
+    %th Account
+    %th Amount
+    %th Address
+    %th Time
+    %th TxId
+
+  - table_row "No received transaction" if tx_recv.empty?
+  - tx_recv.each do |tx|
+    = partial 'transaction', locals: { tx: tx }
+
+%table.sent
+  %tr
+    %th Account
+    %th Amount
+    %th Address
+    %th Time
+    %th TxId
+
+  - table_row "No sent transaction" if tx_sent.empty?
+  - tx_sent.each do |tx|
+    = partial 'transaction', locals: { tx: tx }

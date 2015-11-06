@@ -1,0 +1,17 @@
+%h2 Send
+
+%p Available: #{wallet.balance} BTC
+
+
+%form{ action: "/send", method: "post" }
+  %label
+    To
+    %input{ type: "text", name: "to", placeholder: "1Address..." }
+
+  %label
+    Amount
+    %span.preview.btc  x BTC
+    %span.preview.fiat x USD
+    %input{ type: "text", name: "amount", placeholder: "1 mBTC" }
+
+  %input.btn{ type: "submit", value: "Send" }

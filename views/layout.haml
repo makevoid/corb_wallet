@@ -1,0 +1,22 @@
+- title = "Corb Wallet"
+!!!
+%html
+  %head
+    %meta{ charset: "utf-8" }
+    %meta{ name: "microtip", content: "#{wallet.address}" }
+    %title #{title}
+    = assets :css
+
+  %body{ class: body_class }
+    .container
+      %h1
+        %a{ href: "/" } #{title}
+      %nav
+        %a.btn{ href: "/receive" }      Receive
+        %a.btn{ href: "/send" }         Send
+        %a.btn{ href: "/transactions" } Transactions
+        - if APP_ENV == "development"
+          %a.btn{ href: "/extra" } Extra
+
+      %section.content
+        = yield
